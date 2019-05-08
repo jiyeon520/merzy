@@ -1,0 +1,530 @@
+```{r}
+drama=readxl::read_xlsx("Drama.xlsx")
+
+#1번 
+#1)연도별 최고 
+max(drama12$최고시청률)
+which.max(drama12$최고시청률)
+drama12$name
+#47.6
+#7번째 '내 딸 서영이' 
+
+bb=max(drama13$최고시청률)
+which.max(drama13$최고시청률)
+bbb=drama13$name
+#48.3
+#6번째 '왕가네 식구들'
+
+cc=max(drama14$최고시청률)
+which.max(drama14$최고시청률)
+ccc=drama14$name
+#43.3
+#8번째 '가족끼리 왜이래'
+
+dd=max(drama15$최고시청률)
+which.max(drama15$최고시청률)
+ddd=drama15$name
+#38.2
+#10번째 '부탁해요, 엄마"
+
+ee=max(drama16$최고시청률,na.rm=T)
+which.max(drama16$최고시청률)
+eee=drama16$name
+#38.8
+#7번째 '태양의 후예'
+
+ff=max(drama17$최고시청률)
+which.max(drama17$최고시청률)
+fff=drama17$name
+#45.1
+#6번째 '황금빛 내 인생'
+
+gg=max(drama18$최고시청률)
+which.max(drama18$최고시청률)
+ggg=drama18$name
+#49.4하
+#10번째 '하나뿐인 내편'
+
+hh=max(drama19$최고시청률)
+which.max(drama19$최고시청률)
+hhh=drama19$name
+#22.7
+#1번째 '왜 그래 풍상씨'
+
+
+
+#2)연도별 평균시청률 구하기
+vm12=mean(drama12$최고시청률)
+vm13=mean(drama13$최고시청률)
+vm14=mean(drama14$최고시청률)
+vm15=mean(drama15$최고시청률)
+vm16=mean(drama16$최고시청률,na.rm=T)
+vm17=mean(drama17$최고시청률)
+vm18=mean(drama18$최고시청률)
+vm19=mean(drama19$최고시청률)
+
+vm=c(vm12,vm13,vm14,vm15,vm16,vm17,vm18,vm19)
+par(mfrow=c(1,1))
+plot(vm,axes =F,ann = F)
+axis(1,at=1:8,lab=c("2012","2013","2014","2015","2016","2017","2018","2019"))
+axis(2,ylim=c(0:50))
+title(main="연도별 평균시청률")
+
+#3)연도별 화제성 평균구하기
+#첫번째 ost 대표곡 좋아요
+Melon12=matrix(drama12$`ost 대표곡 좋아요`)
+Melon13=matrix(drama13$`ost 대표곡 좋아요`)
+Melon14=matrix(drama14$`ost 대표곡 좋아요`)
+Melon15=matrix(drama15$`ost 대표곡 좋아요`)
+Melon16=matrix(drama16$`ost 대표곡 좋아요`)
+Melon17=matrix(drama17$`ost 대표곡 좋아요`)
+Melon18=matrix(drama18$`ost 대표곡 좋아요`)
+Melon19=matrix(drama19$`ost 대표곡 좋아요`)
+
+M.Melon12=mean(Melon12,na.rm=T)
+M.Melon13=mean(Melon13,na.rm=T)
+M.Melon14=mean(Melon14,na.rm=T)
+M.Melon15=mean(Melon15,na.rm=T)
+M.Melon16=mean(Melon16,na.rm=T)
+M.Melon17=mean(Melon17,na.rm=T)
+M.Melon18=mean(Melon18,na.rm=T)
+M.Melon19=mean(Melon19,na.rm=T)
+
+M.Melon=c(M.Melon12,M.Melon13,M.Melon14,M.Melon15,M.Melon16,M.Melon17,M.Melon18,M.Melon19)
+
+plot(M.Melon,axes =F,ann = F,type="l")
+axis(1,at=1:8,lab=c("2012","2013","2014","2015","2016","2017","2018","2019"))
+axis(2,ylim=c(0:50))
+title(main="ost 대표곡 좋아요 평균 변화")
+
+plot(M.Melon,axes =F,ann = F,type="l",col="red")
+axis(1,at=1:8,lab=c("2012","2013","2014","2015","2016","2017","2018","2019"))
+title(main="시청률(black)*멜론 ost(red)")
+par(new=T)
+plot(vm,axes =F,ann = F,type="l")
+
+cor(vm,M.Melon)
+
+#두번째 유투브 ost 평균 조회수 
+Youtubeost12=matrix(drama12$`ost 유투브 조회수`)
+Youtubeost13=matrix(drama13$`ost 유투브 조회수`)
+Youtubeost14=matrix(drama14$`ost 유투브 조회수`)
+Youtubeost15=matrix(drama15$`ost 유투브 조회수`)
+Youtubeost16=matrix(drama16$`ost 유투브 조회수`)
+Youtubeost17=matrix(drama17$`ost 유투브 조회수`)
+Youtubeost18=matrix(drama18$`ost 유투브 조회수`)
+Youtubeost19=matrix(drama19$`ost 유투브 조회수`)
+
+M.Youtubeost12=mean(Youtubeost12,na.rm=T)
+M.Youtubeost13=mean(Youtubeost13,na.rm=T)
+M.Youtubeost14=mean(Youtubeost14,na.rm=T)
+M.Youtubeost15=mean(Youtubeost15,na.rm=T)
+M.Youtubeost16=mean(Youtubeost16,na.rm=T)
+M.Youtubeost17=mean(Youtubeost17,na.rm=T)
+M.Youtubeost18=mean(Youtubeost18,na.rm=T)
+M.Youtubeost19=mean(Youtubeost19,na.rm=T)
+
+M.Youtubeost=c(M.Youtubeost12,M.Youtubeost13,M.Youtubeost14,M.Youtubeost15,M.Youtubeost16,M.Youtubeost17,M.Youtubeost18,M.Youtubeost19)
+
+plot(M.Youtubeost,axes =F,ann = F,type="l")
+axis(1,at=1:8,lab=c("2012","2013","2014","2015","2016","2017","2018","2019"))
+title(main="유투브 ost 좋아요 평균 변화")
+
+plot(M.Youtubeost,axes =F,ann = F,type="l",col="red")
+axis(1,at=1:8,lab=c("2012","2013","2014","2015","2016","2017","2018","2019"))
+
+title(main="시청률(black)*유투브 ost(red)")
+par(new=T)
+plot(vm,axes =F,ann = F,type="l")
+
+cor(vm,M.Youtubeost)
+
+#2번 방송사별
+#방송사 구분
+sbs <- drama[drama$company=="SBS",]
+kbs <- drama[drama$company=="KBS",]
+mbc <- drama[drama$company=="MBC",]
+tvn <- drama[drama$company=="tvN",]
+ocn <- drama[drama$company=="OCN",]
+jtbc <- drama[drama$company=="JTBC",]
+
+#방송사별 자료 정리
+summary(sbs$`ost 대표곡 좋아요`, na.rm=TRUE) 
+summary(sbs$`ost 유투브 조회수`, na.rm=TRUE)
+summary(sbs$최고시청률, na.rm=TRUE)
+boxplot(sbs$최고시청률, na.rm=TRUE)
+title(main="sbs 드라마별 최고시청률")
+summary(sbs$`명장면 조회수`, na.rm=TRUE)
+summary(sbs$`도깨비 기준(100) 검색량`, na.rm=TRUE)
+table(sbs$시간대)
+
+summary(kbs$`ost 대표곡 좋아요`, na.rm=TRUE)
+summary(kbs$`ost 유투브 조회수`, na.rm=TRUE)
+summary(kbs$최고시청률, na.rm=TRUE)
+boxplot(kbs$최고시청률, na.rm=TRUE)
+title(main="kbs 드라마별 최고시청률")
+summary(kbs$`명장면 조회수`, na.rm=TRUE)
+summary(kbs$`도깨비 기준(100) 검색량`, na.rm=TRUE)
+table(kbs$시간대)
+
+summary(mbc$`ost 대표곡 좋아요`, na.rm=TRUE)
+summary(mbc$`ost 유투브 조회수`, na.rm=TRUE)
+summary(mbc$최고시청률, na.rm=TRUE)
+boxplot(mbc$최고시청률, na.rm= TRUE)
+title(main="mbc 드라마별 최고시청률")
+summary(mbc$`명장면 조회수`, na.rm=TRUE)
+summary(mbc$`도깨비 기준(100) 검색량`, na.rm=TRUE)
+table(mbc$시간대)
+
+summary(tvn$`ost 대표곡 좋아요`, na.rm=TRUE)
+summary(tvn$`ost 유투브 조회수`, na.rm=TRUE)
+summary(tvn$최고시청률, na.rm=TRUE)
+boxplot(tvn$최고시청률, na.rm=TRUE)
+title(main="tvn 드라마별 최고시청률")
+summary(tvn$`명장면 조회수`, na.rm=TRUE)
+summary(tvn$`도깨비 기준(100) 검색량`, na.rm=TRUE)
+table(tvn$시간대)
+
+summary(jtbc$`ost 대표곡 좋아요`, na.rm=TRUE)
+summary(jtbc$`ost 유투브 조회수`, na.rm=TRUE)
+summary(jtbc$최고시청률, na.rm=TRUE)
+boxplot(jtbc$최고시청률, na.rm=TRUE)
+title(main="jtbc 드라마별 최고시청률")
+which(jtbc$최고시청률>=12)
+jtbc$name # 26, 32 이상치 존재 품위있는 그녀, 스카이캐슬
+rownames(jtbc$name)
+summary(jtbc$`명장면 조회수`, na.rm=TRUE)
+summary(jtbc$`도깨비 기준(100) 검색량`, na.rm=TRUE)
+table(jtbc$시간대)
+
+
+summary(ocn$`ost 대표곡 좋아요`, na.rm=TRUE)
+summary(ocn$`ost 유투브 조회수`, na.rm=TRUE)
+summary(ocn$최고시청률, na.rm=TRUE)
+boxplot(ocn$최고시청률, na.rm= TRUE)
+title(main="ocn 드라마별 최고시청률")
+summary(ocn$`명장면 조회수`, na.rm=TRUE)
+summary(ocn$`도깨비 기준(100) 검색량`, na.rm=TRUE)
+table(ocn$시간대)
+
+#방송사별로 화제성관련 변수와의 관계  
+mean(sbs$`ost 대표곡 좋아요`, na.rm=TRUE)
+boxplot(sbs$`ost 대표곡 좋아요`, na.rm=TRUE)
+which(sbs$`ost 대표곡 좋아요`>=100000)
+sbs$name #별에서 온 그대, 괜찮아 사랑이야, 달의연인 보보경심려, 키스먼저할까요 이상치
+
+mean(kbs$`ost 대표곡 좋아요`, na.rm=TRUE)
+boxplot(kbs$`ost 대표곡 좋아요`, na.rm=TRUE)
+which(kbs$`ost 대표곡 좋아요`>=40000)
+kbs$name #착한남자, 빅, 비밀, 연애의발견, 프로듀사, 태양의후예, 쌈마이웨이
+
+mean(mbc$`ost 대표곡 좋아요`, na.rm=TRUE)
+boxplot(mbc$`ost 대표곡 좋아요`, na.rm=TRUE)
+which(mbc$`ost 대표곡 좋아요`>=40000) 
+mbc$name #해를품은달, 구가의서, 그녀는 예뻤다, 킬미 힐미, 돈꽃, 군주
+
+mean(tvn$`ost 대표곡 좋아요`, na.rm=TRUE)
+boxplot(tvn$`ost 대표곡 좋아요`, na.rm=TRUE)
+which(tvn$`ost 대표곡 좋아요`>=100000) 
+tvn$name #응답하라 1997, 응답하라 1988, 도깨비, 또 오해영
+
+mean(jtbc$`ost 대표곡 좋아요`, na.rm=TRUE)
+boxplot(jtbc$`ost 대표곡 좋아요`, na.rm=TRUE)
+which(jtbc$`ost 대표곡 좋아요`>=18000) 
+jtbc$name # 이번주 아내가 바람을 핍니다, 힘쎈여자 도봉순, 스카이 캐슬, 밥 잘사주는 예쁜 누나, 라이프, 뷰티 인사이드
+
+mean(ocn$`ost 대표곡 좋아요`, na.rm=TRUE)
+boxplot(ocn$`ost 대표곡 좋아요`, na.rm=TRUE)
+which(ocn$`ost 대표곡 좋아요`>=6000) 
+ocn$name # 아름다운 나의 신부, 38 사기동대, 보이스
+
+mean(sbs$`ost 유투브 조회수`, na.rm=TRUE)
+boxplot(sbs$`ost 유투브 조회수`, na.rm=TRUE)
+which(sbs$`ost 유투브 조회수`>=1e+6) #어떻게함
+sbs$name # 별에서 온 그대, 주군의 태양, 괜찮아 사랑이야, 닥터스, 푸른바다의 전설, 달의연인 보보경심려, 키스먼저할까요?
+
+mean(kbs$`ost 유투브 조회수`, na.rm=TRUE)
+boxplot(kbs$`ost 유투브 조회수`, na.rm=TRUE)
+which(kbs$`ost 유투브 조회수`>=10^6.5) 
+kbs$name # 각시탈, 빅, 드림하이2, 연애의 발견, 태양의 후예, 고백부부, 쌈마이웨이
+
+mean(mbc$`ost 유투브 조회수`, na.rm=TRUE)
+boxplot(mbc$`ost 유투브 조회수`, na.rm=TRUE)
+which(mbc$`ost 유투브 조회수`>=5^9.7) 
+mbc$name # 해를 품은달, 기황후, 구가의서, 그녀는 예뻤다, 돈꽃, 군주 가면의 주인
+
+
+mean(tvn$`ost 유투브 조회수`, na.rm=TRUE)
+boxplot(tvn$`ost 유투브 조회수`, na.rm=TRUE)
+which(tvn$`ost 유투브 조회수`>=10^7.1) 
+tvn$name #응답하라 1997, 응답하라 1988, 도깨비, 또 오해영
+
+
+mean(jtbc$`ost 유투브 조회수`, na.rm=TRUE)
+boxplot(jtbc$`ost 유투브 조회수`, na.rm=TRUE)
+which(jtbc$`ost 유투브 조회수`>=7^7) 
+jtbc$name #이번주 아내가 바람을 핍니다, 힘쎈여자 도봉순, 스카이캐슬, 미스티, 내 아이디는 강남미인, 뷰티 인사이드
+
+mean(ocn$`ost 유투브 조회수`, na.rm=TRUE)
+boxplot(ocn$`ost 유투브 조회수`, na.rm=TRUE)
+which(ocn$`ost 유투브 조회수`>=600000) 
+ocn$name #보이스, 블랙
+
+mean(sbs$`명장면 조회수`, na.rm=TRUE)
+boxplot(sbs$`명장면 조회수`, na.rm=TRUE)
+which(sbs$`명장면 조회수`>=10^6.63)
+sbs$name #상속자들, 장옥정 사랑에 살다, 괜찮아 사랑이야
+
+mean(kbs$`명장면 조회수`, na.rm=TRUE)
+boxplot(kbs$`명장면 조회수`, na.rm=TRUE)
+which(kbs$`명장면 조회수`>=2.0e+06)
+kbs$name #프로듀사, 태양의 후예, 아버지가 이상해, 쌈마이웨이, 하나뿐인 내편
+
+mean(mbc$`명장면 조회수`, na.rm=TRUE)
+boxplot(mbc$`명장면 조회수`, na.rm=TRUE)
+which(mbc$`명장면 조회수`>=10^6.2)
+mbc$name # 해를 품은 달, 기황후, 그녀는 예뻤다, 불어라 미풍아
+
+
+mean(tvn$`명장면 조회수`, na.rm=TRUE)
+boxplot(tvn$`명장면 조회수`, na.rm=TRUE)
+which(tvn$`명장면 조회수`>=10^6.8)
+tvn$name #응답하라 1997, 로맨스가 필요해 2012
+
+mean(ocn$`명장면 조회수`, na.rm=TRUE)
+boxplot(ocn$`명장면 조회수`, na.rm=TRUE)
+which(ocn$`명장면 조회수`>=10^5.6)
+ocn$name # 나쁜 녀석들, 리셋, 신의 퀴즈 시즌4, 처용
+
+library(ppcor)
+broad <- data.frame(sbs, kbs, mbc, tvn, jtbc, ocn)
+cor(sbs$`ost 대표곡 좋아요`, sbs$`ost 유투브 조회수`, use="complete.obs")
+cor(sbs$`ost 대표곡 좋아요`, sbs$`명장면 조회수`, use="complete.obs")
+cor(sbs$`ost 유투브 조회수`, sbs$`명장면 조회수`, use="complete.obs")
+
+cor(kbs$`ost 대표곡 좋아요`, kbs$`ost 유투브 조회수`, use="complete.obs")
+cor(kbs$`ost 대표곡 좋아요`, kbs$`명장면 조회수`, use="complete.obs")
+cor(kbs$`ost 유투브 조회수`, kbs$`명장면 조회수`, use="complete.obs")
+
+cor(mbc$`ost 대표곡 좋아요`, mbc$`ost 유투브 조회수`, use="complete.obs")
+cor(mbc$`ost 대표곡 좋아요`, mbc$`명장면 조회수`, use="complete.obs")
+cor(mbc$`ost 유투브 조회수`, mbc$`명장면 조회수`, use="complete.obs")
+
+cor(tvn$`ost 대표곡 좋아요`, tvn$`ost 유투브 조회수`, use="complete.obs")
+cor(tvn$`ost 대표곡 좋아요`, tvn$`명장면 조회수`, use="complete.obs")
+cor(tvn$`ost 유투브 조회수`, tvn$`명장면 조회수`, use="complete.obs")
+
+cor(jtbc$`ost 대표곡 좋아요`, jtbc$`ost 유투브 조회수`, use="complete.obs")
+cor(jtbc$`ost 대표곡 좋아요`, jtbc$`명장면 조회수`, use="complete.obs")
+cor(jtbc$`ost 유투브 조회수`, jtbc$`명장면 조회수`, use="complete.obs")
+
+cor(ocn$`ost 대표곡 좋아요`, ocn$`ost 유투브 조회수`, use="complete.obs")
+cor(ocn$`ost 대표곡 좋아요`, ocn$`명장면 조회수`, use="complete.obs")
+cor(ocn$`ost 유투브 조회수`, ocn$`명장면 조회수`, use="complete.obs")
+
+cor(sbs$최고시청률, sbs$`ost 대표곡 좋아요`, use="complete.obs")
+cor(sbs$최고시청률, sbs$`ost 유투브 조회수`, use="complete.obs")
+cor(sbs$최고시청률, sbs$`명장면 조회수`, use="complete.obs")
+
+#3번 시간대별(자정,밤,저녁,아침드라마) 
+morn <- drama[drama$시간대=="아침",]
+mn <- drama[drama$시간대=="저녁",]
+night <- drama[drama$시간대=="밤",]
+ln <- drama[drama$시간대=="자정",]
+#시간대별 드라마의 최고시청률과 평균시청률
+summary(morn$최고시청률, na.rm=TRUE)
+summary(mn$최고시청률, na.rm=TRUE)
+summary(night$최고시청률, na.rm=TRUE)
+summary(ln$최고시청률, na.rm=TRUE)
+
+mean(morn$`ost 대표곡 좋아요`, na.rm=T)
+mean(morn$`ost 유투브 조회수`, na.rm=T)
+mean(morn$`명장면 조회수`, na.rm=T)
+
+mean(mn$`ost 대표곡 좋아요`, na.rm=T)
+mean(mn$`ost 유투브 조회수`, na.rm=T)
+mean(mn$`명장면 조회수`, na.rm=T)
+
+mean(night$`ost 대표곡 좋아요`, na.rm=T)
+mean(night$`ost 유투브 조회수`, na.rm=T)
+mean(night$`명장면 조회수`, na.rm=T)
+
+mean(ln$`ost 대표곡 좋아요`, na.rm=T)
+mean(ln$`ost 유투브 조회수`, na.rm=T)
+mean(ln$`명장면 조회수`, na.rm=T)
+
+t.test(morn$최고시청률,mn$최고시청률)
+t.test(morn$최고시청률,night$최고시청률)
+t.test(morn$최고시청률,ln$최고시청률)
+t.test(mn$최고시청률,night$최고시청률)
+t.test(mn$최고시청률,ln$최고시청률)
+t.test(night$최고시청률,ln$최고시청률)
+
+t.test(morn$`ost 대표곡 좋아요`,mn$`ost 대표곡 좋아요`)
+t.test(morn$`ost 대표곡 좋아요`,night$`ost 대표곡 좋아요`)
+t.test(morn$`ost 대표곡 좋아요`,ln$`ost 대표곡 좋아요`)
+t.test(mn$`ost 대표곡 좋아요`,night$`ost 대표곡 좋아요`)
+t.test(mn$`ost 대표곡 좋아요`,ln$`ost 대표곡 좋아요`)
+t.test(night$`ost 대표곡 좋아요`,ln$`ost 대표곡 좋아요`)
+
+t.test(morn$`ost 유투브 조회수`,mn$`ost 유투브 조회수`)
+t.test(morn$`ost 유투브 조회수`,night$`ost 유투브 조회수`)
+t.test(morn$`ost 유투브 조회수`,ln$`ost 유투브 조회수`)
+t.test(mn$`ost 유투브 조회수`,night$`ost 유투브 조회수`)
+t.test(mn$`ost 유투브 조회수`,ln$`ost 유투브 조회수`)
+t.test(night$`ost 유투브 조회수`,ln$`ost 유투브 조회수`)
+
+t.test(morn$`명장면 조회수`,mn$`명장면 조회수`)
+t.test(morn$`명장면 조회수`,night$`명장면 조회수`)
+t.test(morn$`명장면 조회수`,ln$`명장면 조회수`)
+t.test(mn$`명장면 조회수`,night$`명장면 조회수`)
+t.test(mn$`명장면 조회수`,ln$`명장면 조회수`)
+t.test(night$`명장면 조회수`,ln$`명장면 조회수`)
+
+#4번 종류별(지상파,케이블,종합편성)
+tot <- drama[drama$종류=="종합편성",]
+cab <- drama[drama$종류=="케이블",]
+gru <- drama[drama$종류=="지상파",]
+#종류별 최고시청률과 평균시청률
+summary(tot$최고시청률, na.rm=TRUE)
+summary(cab$최고시청률, na.rm=TRUE)
+summary(gru$최고시청률, na.rm=TRUE)
+
+mean(tot$`ost 대표곡 좋아요`, na.rm=T)
+mean(tot$`ost 유투브 조회수`, na.rm=T)
+mean(tot$`명장면 조회수`, na.rm=T)
+
+mean(cab$`ost 대표곡 좋아요`, na.rm=T)
+mean(cab$`ost 유투브 조회수`, na.rm=T)
+mean(cab$`명장면 조회수`, na.rm=T)
+
+mean(gru$`ost 대표곡 좋아요`, na.rm=T)
+mean(gru$`ost 유투브 조회수`, na.rm=T)
+mean(gru$`명장면 조회수`, na.rm=T)
+
+
+t.test(tot$최고시청률,cab$최고시청률)
+t.test(tot$최고시청률,gru$최고시청률)
+t.test(cab$최고시청률,gru$최고시청률)
+
+
+t.test(tot$`ost 대표곡 좋아요`,cab$`ost 대표곡 좋아요`)
+t.test(tot$`ost 대표곡 좋아요`,gru$`ost 대표곡 좋아요`)
+t.test(cab$`ost 대표곡 좋아요`,gru$`ost 대표곡 좋아요`)
+
+t.test(tot$`ost 유투브 조회수`,cab$`ost 유투브 조회수`)
+t.test(tot$`ost 유투브 조회수`,gru$`ost 유투브 조회수`)
+t.test(cab$`ost 유투브 조회수`,gru$`ost 유투브 조회수`)
+
+
+t.test(tot$`명장면 조회수`,cab$`명장면 조회수`)
+t.test(tot$`명장면 조회수`,gru$`명장면 조회수`)
+t.test(cab$`명장면 조회수`,gru$`명장면 조회수`)
+
+#5.기타-연도별로 바라본 종류별 평균시청률 변화 추이
+
+drama12=subset(drama,연도=="2012")
+drama13=subset(drama,연도=="2013")
+drama14=subset(drama,연도=="2014")
+drama15=subset(drama,연도=="2015")
+drama16=subset(drama,연도=="2016")
+drama17=subset(drama,연도=="2017")
+drama18=subset(drama,연도=="2018")
+drama19=subset(drama,연도=="2019")
+
+
+drama12G=subset(drama12,종류=="지상파")
+drama12K=subset(drama12,종류=="케이블"|종류=="종합편성")
+drama13G=subset(drama13,종류=="지상파")
+drama13K=subset(drama13,종류=="케이블"|종류=="종합편성")
+drama14G=subset(drama14,종류=="지상파")
+drama14K=subset(drama14,종류=="케이블"|종류=="종합편성")
+drama15G=subset(drama15,종류=="지상파")
+drama16G=subset(drama16,종류=="지상파")
+drama17G=subset(drama17,종류=="지상파")
+drama18G=subset(drama18,종류=="지상파")
+drama19G=subset(drama19,종류=="지상파")
+drama15K=subset(drama15,종류=="케이블"|종류=="종합편성")
+drama16K=subset(drama16,종류=="케이블"|종류=="종합편성")
+drama17K=subset(drama17,종류=="케이블"|종류=="종합편성")
+drama18K=subset(drama18,종류=="케이블"|종류=="종합편성")
+drama19K=subset(drama19,종류=="케이블"|종류=="종합편성")
+
+
+vm12=mean(drama12$최고시청률)
+vm13=mean(drama13$최고시청률)
+vm14=mean(drama14$최고시청률)
+vm15=mean(drama15$최고시청률)
+vm16=mean(drama16$최고시청률)
+vm17=mean(drama17$최고시청률)
+vm18=mean(drama18$최고시청률)
+vm19=mean(drama19$최고시청률)
+
+vm12G=mean(drama12G$최고시청률,na.rm=T)
+vm13G=mean(drama13G$최고시청률,na.rm=T)
+vm14G=mean(drama14G$최고시청률,na.rm=T)
+vm15G=mean(drama15G$최고시청률,na.rm=T)
+vm16G=mean(drama16G$최고시청률,na.rm=T)
+vm17G=mean(drama17G$최고시청률,na.rm=T)
+vm18G=mean(drama18G$최고시청률,na.rm=T)
+vm19G=mean(drama19G$최고시청률,na.rm=T)
+vm12K=mean(drama12K$최고시청률,na.rm=T)
+vm13K=mean(drama13K$최고시청률,na.rm=T)
+vm14K=mean(drama14K$최고시청률,na.rm=T)
+vm15K=mean(drama15K$최고시청률,na.rm=T)
+vm16K=mean(drama16K$최고시청률,na.rm=T)
+vm17K=mean(drama17K$최고시청률,na.rm=T)
+vm18K=mean(drama18K$최고시청률,na.rm=T)
+vm19K=mean(drama19K$최고시청률,na.rm=T)
+vmG=c(vm12G,vm13G,vm14G,vm15G,vm16G,vm17G,vm18G,vm19G)
+vmK=c(vm12K,vm13K,vm14K,vm15K,vm16K,vm17K,vm18K,vm19K)
+
+par(mfrow=c(1,2))
+
+plot(vmG,axes =F,ann = F,type="l")
+axis(1,at=1:8,lab=c("2012","2013","2014","2015","2016","2017","2018","2019"))
+axis(2,ylim=c(0:50))
+title(main="지상파 시청률 변화 추이",col.main="red")
+title(xlab="연도")
+title(ylab="시청률")
+
+plot(vmK,axes=F,ann=F,type="l")
+axis(1,at=1:8,lab=c("2012","2013","2014","2015","2016","2017","2018","2019"))
+axis(2,ylim=c(0:50))
+title(main="케이블 및 종합편성 시청률 변화 추이",col.main="red")
+title(xlab="연도")
+title(ylab="시청률")
+
+par(mfrow=c(1,1))
+boxplot(vmG,vmK)
+title(main="종류별 평균시청률")
+#지상파의 평균시청률이 대체로 감소하는 추세이고 케이블 및 종합편성의 평균시청률이 증가하는 추세이지만 
+#절대적인 수치로 봤을 때 케이블과 종합편성의 평균 시청률이 지상파 프로그램의 평균시청률을 넘지 못한다.
+
+par(mfrow=c(3,3))
+
+boxplot(drama12$최고시청률,drama12G$최고시청률,drama12K$최고시청률,axes=F,ann=F,main="2012년")
+axis(1,at=1:3,lab=c("전체","지상파","지상파 외")) 
+axis(2,yim=c(0:50))
+boxplot(drama13$최고시청률,drama13G$최고시청률,drama13K$최고시청률,axes=F,ann=F,main="2013년")
+axis(1,at=1:3,lab=c("전체","지상파","지상파 외")) 
+axis(2,yim=c(0:50))
+boxplot(drama14$최고시청률,drama14G$최고시청률,drama14K$최고시청률,axes=F,ann=F,main="2014년")
+axis(1,at=1:3,lab=c("전체","지상파","지상파 외")) 
+axis(2,yim=c(0:50))
+boxplot(drama15$최고시청률,drama15G$최고시청률,drama15K$최고시청률,axes=F,ann=F,main="2015년")
+axis(1,at=1:3,lab=c("전체","지상파","지상파 외")) 
+axis(2,yim=c(0:50))
+boxplot(drama16$최고시청률,drama16G$최고시청률,drama16K$최고시청률,axes=F,ann=F,main="2016년")
+axis(1,at=1:3,lab=c("전체","지상파","지상파 외")) 
+axis(2,yim=c(0:50))
+boxplot(drama17$최고시청률,drama17G$최고시청률,drama17K$최고시청률,axes=F,ann=F,main="2017년")
+axis(1,at=1:3,lab=c("전체","지상파","지상파 외")) 
+axis(2,yim=c(0:50))
+boxplot(drama18$최고시청률,drama18G$최고시청률,drama18K$최고시청률,axes=F,ann=F,main="2018년")
+axis(1,at=1:3,lab=c("전체","지상파","지상파 외")) 
+axis(2,yim=c(0:50))
+boxplot(drama19$최고시청률,drama19G$최고시청률,drama19K$최고시청률,axes=F,ann=F,main="2019년")
+axis(1,at=1:3,lab=c("전체","지상파","지상파 외")) 
+axis(2,yim=c(0:50))
+```
